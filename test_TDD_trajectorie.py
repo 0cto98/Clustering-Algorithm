@@ -2,13 +2,23 @@ import math
 import pytest
 from point import *
 
-#trajectorie lenght
+#ajouter point au milieu de la liste
+#suppr point par son indice ou sa valeur
+#translation de la traj
+#print l'ensemble de points
+
 class Trajectorie:
     def __init__(self):
         self.points = []
 
+    def point_i(self,i):
+        return self.points[i]
+
     def add_point(self,P):
         self.points.append(P)
+    
+    def add_point_at_i(self,P,i):
+        self.points.insert(i,P)
 
     def lenght(self):
         l = 0
@@ -24,7 +34,7 @@ def test_traj_init():
     t = Trajectorie()
     assert t != None
 
-def test_add_point():
+def test_add_point_at_the_end():
     t=Trajectorie()
     p1=Point(0,0)
     t.add_point(p1)
@@ -53,3 +63,13 @@ def test_traj_lenght_gt2point():
     t.add_point(p2)
     t.add_point(p3)
     assert t.lenght()==5
+
+def test_add_point_at_any_place():
+    t=Trajectorie()
+    p1=Point(0,0)
+    p2=Point(1,0)
+    p3=Point(5,0)
+    t.add_point(p1)
+    t.add_point(p2)
+    t.add_point_at_i(p3,1)
+    assert t.point_i(1).x==p3.x and t.point_i(1).y==p3.y
