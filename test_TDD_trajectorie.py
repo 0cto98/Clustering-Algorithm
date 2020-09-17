@@ -11,9 +11,11 @@ class Trajectorie:
         self.points.append(P)
 
     def lenght(self):
-        p0 = self.points[0]
-        p1 = self.points[1]
-        l = sqrt( ((p1.x-p0.x)**2)+((p1.y-p0.y)**2) )
+        l = 0
+        if len(self.points)>=2:
+            p0 = self.points[0]
+            p1 = self.points[1]
+            l = sqrt( ((p1.x-p0.x)**2)+((p1.y-p0.y)**2) )
         return l
 
 
@@ -34,3 +36,9 @@ def test_traj_lenght_2points():
     t.add_point(p1)
     t.add_point(p2)
     assert t.lenght()==1
+
+def test_traj_lenght_1point():
+    t=Trajectorie()
+    p1=Point(0,0)
+    t.add_point(p1)
+    assert t.lenght()==0
