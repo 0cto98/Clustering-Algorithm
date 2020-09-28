@@ -29,6 +29,9 @@ class Trajectorie:
                 l += sqrt( ((p1.x-p0.x)**2)+((p1.y-p0.y)**2) )
         return l
 
+    def number_of_points(self):
+        return len(self.points)
+
 
 def test_traj_init():
     t = Trajectorie()
@@ -73,3 +76,13 @@ def test_add_point_at_any_place():
     t.add_point(p2)
     t.add_point_at_i(p3,1)
     assert t.point_i(1).x==p3.x and t.point_i(1).y==p3.y
+
+def test_num_of_points():
+    t=Trajectorie()
+    p1=Point(0,0)
+    p2=Point(1,0)
+    p3=Point(5,0)
+    t.add_point(p1)
+    t.add_point(p2)
+    t.add_point(p3)
+    assert t.number_of_points() == 3
