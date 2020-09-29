@@ -1,6 +1,6 @@
 from test_TDD_trajectorie import Trajectorie
-from graph import Graph
-from point import Point
+from test_graph import Graph
+from test_point import Point
 
 
 #Take the list of trajectories A and return an other list of trajectories B so that every trajectorie which cross a square of the grid as a point in this square

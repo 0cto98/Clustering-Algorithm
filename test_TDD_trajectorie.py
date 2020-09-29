@@ -1,6 +1,6 @@
 from math import sqrt
 import pytest
-from point import Point
+from test_point import Point
 
 #ajouter point au milieu de la liste
 #suppr point par son indice ou sa valeur
