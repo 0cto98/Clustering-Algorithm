@@ -1,6 +1,6 @@
-import math
+from math import sqrt
 import pytest
-from point import *
+from point import Point
 
 #ajouter point au milieu de la liste
 #suppr point par son indice ou sa valeur
@@ -32,10 +32,37 @@ class Trajectorie:
     def number_of_points(self):
         return len(self.points)
 
+    def __str__(self):
+        s = '<'
+        for i in range(self.number_of_points()):
+            s +=' '+str(self.point_i(i))
+        s+=' >'
+        return s
 
-def test_traj_init():
-    t = Trajectorie()
-    assert t != None
+    def __eq__(self,other):
+        return self.points == other.points
+
+
+def test_traj_eq():
+    t=Trajectorie()
+    p1=Point(0,0)
+    p2=Point(1,0)
+    t.add_point(p1)
+    t.add_point(p2)
+    t2=Trajectorie()
+    t2.add_point(p1)
+    t2.add_point(p2)
+    assert t == t2
+
+def test_traj_different():
+    t=Trajectorie()
+    p1=Point(0,0)
+    p2=Point(1,0)
+    t.add_point(p1)
+    t.add_point(p2)
+    t2=Trajectorie()
+    t2.add_point(p1)
+    assert t != t2
 
 def test_add_point_at_the_end():
     t=Trajectorie()
