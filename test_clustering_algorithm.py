@@ -19,23 +19,67 @@ def grid_traj(traj_list, grid_size):
                     t.add_point_at_i(p1.middle(p2),i+1)
         grid_traj_list.append(t)
     return grid_traj_list
-                
-                
+
+#Centers every point in the middle of the grid's square it is in
+#It means thats all points in the same square will have the same coordinates so we'll be able to merge them in the next step 
+def center_points_grid_cells(grid_traj_list, grid_size):
+    centered_grid_traj_list = []
+    for traj in grid_traj_list:
+        t = Trajectorie()
+        for i in range(traj.number_of_points()):
+            point=traj.point_i(i)
+            x = point.x - point.x%grid_size + grid_size/2
+            y = point.y - point.y%grid_size + grid_size/2
+            t.add_point(Point(x,y))
+        centered_grid_traj_list.append(t)
+    return centered_grid_traj_list
+
+#Construct the graph with the centered_grid_traj_list 
+#Points with the same coordinates will be represented as a single node in the graph
+def centered_grid_traj_list_to_graph(centered_grid_traj_list):
+    g=Graph()
+    for traj in centered_grid_traj_list:
+        for i in range(traj.number_of_points()-1):
+            p1=traj.point_i(i)
+            p2=traj.point_i(i+1)
+            if (p1 != p2):
+                g.addEdge(p1, p2)
+    return g
+
+
+
 
 t = Trajectorie()
-p1=Point(0,0)
-p2=Point(2,0)
+p1=Point(0.1,0.1)
+p2=Point(5.1,0.1)
 t.add_point(p1)
 t.add_point(p2)
 t2 = Trajectorie()
-p1=Point(1,1)
-p2=Point(2,2)
+p1=Point(0.8,0.8)
+p2=Point(5.8,0.8)
 t2.add_point(p1)
 t2.add_point(p2)
 
-g = grid_traj([t2,t],0.5)
+print(t)
+print(t2)
+print("---")
+size = 1
+g = grid_traj([t2,t],size)
 for i in range (len(g)):
     print(g[i])
+
+print("---")
+
+g = center_points_grid_cells(g,size)
+for i in range (len(g)):
+    print(g[i])
+print("---")
+g = centered_grid_traj_list_to_graph(g)
+g.show_edges()
+print("---")
+g.show_nodes()
+print("---")
+g.show_dict()
 
 
 def test_grid_single_traj():
