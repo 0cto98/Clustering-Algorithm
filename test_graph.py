@@ -32,7 +32,13 @@ class Graph:
     
     def __eq__(self,other):
         return set(self.edges) == set(other.edges)
+    
+    def show_nodes(self):
+        for node in self.nodes:
+            print(node)
 
+    def show_dict(self):
+        print(self.dict)
 
 def test_add_edge():
     g = Graph()
