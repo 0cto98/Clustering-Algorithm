@@ -22,6 +22,8 @@ class Point:
     def middle(self, other):
         return Point((self.x+other.x)/2,(self.y+other.y)/2)
 
+
+
 def test_init():
     p = Point(1,2)
     assert p.x == 1 and p.y == 2
