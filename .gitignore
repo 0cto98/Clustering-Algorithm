@@ -9,6 +9,8 @@
 
 *.pyc
 
+*.png
+
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
@@ -37,3 +39,7 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+#Prevent from pushing cabspottingdata
+Clustering-Algorithm/cabspottingdata/*
+Clustering-Algorithm/cabspottingdata-Copie/*
