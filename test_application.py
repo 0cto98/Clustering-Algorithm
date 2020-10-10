@@ -7,6 +7,19 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 class Application:
     def __init__(self, path, grid_size):
+        """Process the whole clustering algorithm on a set of trajectories files:
+        Convert trajectories files to a list of Trajectorie objects
+        Apply the grid_traj() function in order to have at least one Point on every grid's cell it cross
+        Center every Point on the middle of grid's cell it belongs
+        Convert the list of Trajectories to a Graph, which has the effect of merging Points that are in the same cell
+        Save the graph if we want to re-use it without having to re-compute everything
+        Plot the base trajectories
+        Plot the clustered trajectories
+
+        Args:
+            path ([string]): Path to the directory containing trajectories files
+            grid_size ([float]): Size of grid's cells, used in grid_traj() and center_points_grid_cells() functions
+        """
         self.traj_list = import_data(path)
         self.grid_traj_list = grid_traj(self.traj_list, grid_size)
         self.centered_grid_traj_list = center_points_grid_cells(self.grid_traj_list, grid_size)
@@ -27,6 +40,8 @@ class Application:
                 y.append(p.y)
             plt.plot(x,y)
         plt.axis('equal')
+        plt.xlim(37.3, 38.1)
+        plt.ylim(-122.6, -121.9)
         plt.savefig(str(dir_path)+'/Base_Trajecories.png') #Save the plot as .png file
         plt.grid(True)
 
@@ -38,8 +53,10 @@ class Application:
             y = [edge[0].y, edge[1].y]
             plt.plot(x, y, c='r')
         plt.axis('equal')
+        plt.xlim(37.3, 38.1)
+        plt.ylim(-122.6, -121.9)
         plt.savefig(str(dir_path)+'/Cluster.png') #Save the plot as .png file
         plt.grid(True)
 
-app = Application(str(dir_path)+"/cabspottingdata",0.02)
+app = Application(str(dir_path)+"/cabspottingdata",0.05)
 
