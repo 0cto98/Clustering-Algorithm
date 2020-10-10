@@ -2,11 +2,6 @@ import numpy as np
 import pytest
 from test_point import Point
 
-#ajouter point au milieu de la liste
-#suppr point par son indice ou sa valeur
-#translation de la traj
-#print l'ensemble de points
-
 class Trajectorie:
     #Create an empty Trajectorie
     def __init__(self):
@@ -38,7 +33,7 @@ class Trajectorie:
     def number_of_points(self):
         return len(self.points)
 
-    #Print the Trajectorie ()
+    #Print the Trajectorie
     def __str__(self):
         s = '<'
         for i in range(self.number_of_points()):
