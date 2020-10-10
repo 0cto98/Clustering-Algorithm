@@ -5,15 +5,17 @@ from test_point import Point
 
 
 def grid_traj(traj_list, grid_size):
-    """
-    Take the list of trajectories A and return an other list of trajectories B so that every
+    """Take the list of trajectories A and return an other list of trajectories B so that every
     trajectorie which cross a square of the grid as a point in this square
+
     Args:
-        traj_list [list]: List of trajectories we want to cluster
-        grid_size [int] : Size of a grid's cell, the smaller it is, the more accurate the trajectories will be
-    Return:
-        grid_traj_list [list] : List of trajectories with one coordinate on every grid's cell it cross
+        traj_list ([list]): List of trajectories we want to cluster
+        grid_size ([int]): Size of a grid's cell, the smaller it is, the more accurate the trajectories will be
+
+    Returns:
+        [list]: List of trajectories with one coordinate on every grid's cell it cross
     """
+
     grid_traj_list = []
     for traj in traj_list:
         t = traj
@@ -31,16 +33,18 @@ def grid_traj(traj_list, grid_size):
 
 
 def center_points_grid_cells(grid_traj_list, grid_size):
-    """
-    Centers every point in the middle of the grid's square it is in
+    """Centers every point in the middle of the grid's square it is in
     It means thats all points in the same square will have the same
     coordinates so we'll be able to merge them in the next step
+
     Args:
-        grid_traj_list [list]: List of trajectories we want to cluster
-        grid_size [int] : Size of a grid's cell
-    Return:
-        grid_traj_list [list] : List of trajectories with coordinates center on grid's cell it is in
+        grid_traj_list ([list]): List of trajectories we want to cluster
+        grid_size ([tyintpe]): Size of a grid's cell
+
+    Returns:
+        [list]: List of trajectories with coordinates center on grid's cell it is in
     """
+
     centered_grid_traj_list = []
     for traj in grid_traj_list:
         t = Trajectorie()
@@ -54,13 +58,14 @@ def center_points_grid_cells(grid_traj_list, grid_size):
 
 
 def centered_grid_traj_list_to_graph(centered_grid_traj_list):
-    """
-    Construct the graph with the centered_grid_traj_list 
+    """Construct the graph with the centered_grid_traj_list 
     Points with the same coordinates will be represented as a single node in the graph
+
     Args:
-        centered_grid_traj_list [list]: List of trajectories we want to cluster
-    Return:
-        g [list] : Graph of points from centered_grid_traj_list
+        centered_grid_traj_list ([list]): List of trajectories we want to cluster
+
+    Returns:
+        [list]: Graph of points from centered_grid_traj_list
     """
     g=Graph()
     for traj in centered_grid_traj_list:
@@ -75,6 +80,14 @@ def centered_grid_traj_list_to_graph(centered_grid_traj_list):
 import os
 import csv
 def import_data(directory):
+    """Convert trajectories files - contained in a directory - to a list of Trajectories
+
+    Args:
+        directory ([string]): The directory containing trajectories files, must be in the same directory as the script
+
+    Returns:
+        [list]: list of Trajectories
+    """
     traj = []
     for file in os.listdir(directory):
         t = Trajectorie()
@@ -87,44 +100,6 @@ def import_data(directory):
         traj.append(t)
     return traj
 
-
-"""
-traj = import_data("C:/Users/tomri/Desktop/Master 1/Clustering-Algorithm/cabspottingdata")
-print(traj[0])
-
-
-t = Trajectorie()
-p1=Point(0.1,0.1)
-p2=Point(5.1,0.1)
-t.add_point(p1)
-t.add_point(p2)
-t2 = Trajectorie()
-p1=Point(0.8,0.8)
-p2=Point(5.8,0.8)
-t2.add_point(p1)
-t2.add_point(p2)
-
-print(t)
-print(t2)
-print("---")
-size = 1
-g = grid_traj([t2,t],size)
-for i in range (len(g)):
-    print(g[i])
-
-print("---")
-
-g = center_points_grid_cells(g,size)
-for i in range (len(g)):
-    print(g[i])
-print("---")
-g = centered_grid_traj_list_to_graph(g)
-g.show_edges()
-print("---")
-g.show_nodes()
-print("---")
-g.show_dict()
-"""
 
 def test_grid_single_traj():
     t=Trajectorie()
