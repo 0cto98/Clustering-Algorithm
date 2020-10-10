@@ -20,6 +20,7 @@ class Application:
             path ([string]): Path to the directory containing trajectories files
             grid_size ([float]): Size of grid's cells, used in grid_traj() and center_points_grid_cells() functions
         """
+        self.grid_size = grid_size
         self.traj_list = import_data(path)
         self.grid_traj_list = grid_traj(self.traj_list, grid_size)
         self.centered_grid_traj_list = center_points_grid_cells(self.grid_traj_list, grid_size)
@@ -42,7 +43,7 @@ class Application:
         plt.axis('equal')
         plt.xlim(37.3, 38.1)
         plt.ylim(-122.6, -121.9)
-        plt.savefig(str(dir_path)+'/Base_Trajecories.png') #Save the plot as .png file
+        plt.savefig(str(dir_path)+'/img/'+str(self.grid_size)+'Base_Trajecories.png') #Save the plot as .png file
         plt.grid(True)
 
     def show_crustered_traj(self):
@@ -55,7 +56,7 @@ class Application:
         plt.axis('equal')
         plt.xlim(37.3, 38.1)
         plt.ylim(-122.6, -121.9)
-        plt.savefig(str(dir_path)+'/Cluster.png') #Save the plot as .png file
+        plt.savefig(str(dir_path)+'/img/'+str(self.grid_size)+'Cluster.png') #Save the plot as .png file
         plt.grid(True)
 
 app = Application(str(dir_path)+"/cabspottingdata",0.05)
