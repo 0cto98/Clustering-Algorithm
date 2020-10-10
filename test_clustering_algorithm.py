@@ -10,7 +10,7 @@ def grid_traj(traj_list, grid_size):
 
     Args:
         traj_list ([list]): List of trajectories we want to cluster
-        grid_size ([int]): Size of a grid's cell, the smaller it is, the more accurate the trajectories will be
+        grid_size ([float]): Size of a grid's cell, the smaller it is, the more accurate the trajectories will be
 
     Returns:
         [list]: List of trajectories with one coordinate on every grid's cell it cross
@@ -39,7 +39,7 @@ def center_points_grid_cells(grid_traj_list, grid_size):
 
     Args:
         grid_traj_list ([list]): List of trajectories we want to cluster
-        grid_size ([tyintpe]): Size of a grid's cell
+        grid_size ([float]): Size of a grid's cell
 
     Returns:
         [list]: List of trajectories with coordinates center on grid's cell it is in
