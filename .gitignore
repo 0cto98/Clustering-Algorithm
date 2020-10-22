@@ -39,5 +39,7 @@ ehthumbs.db
 Thumbs.db
 
 #Prevent from pushing cabspottingdata
-Clustering-Algorithm/cabspottingdata/*
-Clustering-Algorithm/cabspottingdata-Copie/*
+cabspottingdata/*
+cabspottingdata-Copie/*
+graph
+.vscode/*

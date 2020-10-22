@@ -1,4 +1,4 @@
-from test_clustering_algorithm import *
+from clustering_algorithm import *
 import pickle
 import matplotlib.pyplot as plt
 import numpy as np
@@ -59,5 +59,4 @@ class Application:
         plt.savefig(str(dir_path)+'/img/'+str(self.grid_size)+'Cluster.png') #Save the plot as .png file
         plt.grid(True)
 
-app = Application(str(dir_path)+"/cabspottingdata",0.05)
-
+app = Application(str(dir_path)+"/cabspottingdata-Copie",0.06)
